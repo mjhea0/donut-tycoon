@@ -107,6 +107,7 @@ describe('routes : shops', () => {
         should.not.exist(err);
         res.redirects.length.should.eql(0);
         res.status.should.eql(200);
+        res.text.should.contain('<h1>New shop</h1>');
         res.type.should.eql('text/html');
         res.text.should.contain('<title>Donut Tycoon - new shop</title>');
         res.text.should.contain(
@@ -138,6 +139,58 @@ describe('routes : shops', () => {
           return knex('shops').select('*')
           .then((results) => {
             results.length.should.eql(shops.length + 1);
+            done();
+          });
+        });
+      });
+    });
+  });
+
+  describe('GET /shops/:id/edit', () => {
+    it('should have a form for adding a new shop', (done) => {
+      return knex('shops').where('name', 'Jelly Donut').first()
+      .then((shop) => {
+        chai.request(server)
+        .get(`/shops/${shop.id}/edit`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(0);
+          res.status.should.eql(200);
+          res.text.should.contain('<h1>Update shop</h1>');
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - update shop</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain('<form method="post" action="/shops/edit">');
+          res.text.should.contain('<label for="name">Name</label>');
+          res.text.should.contain('<label for="city">City</label>');
+          res.text.should.contain(
+            `<input type="hidden" name="id" value="${shop.id}" required>`);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('POST /shops/edit', () => {
+    it('should update a shop and redirect to /shops', (done) => {
+      return knex('shops').where('name', 'Jelly Donut').first()
+      .then((shop) => {
+        chai.request(server)
+        .post('/shops/edit')
+        .send({id: shop.id, name: 'Jelly Donut Update', city: 'New York'})
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(1);
+          res.status.should.eql(200);
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - home</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain('Jelly Donut Update');
+          return knex('shops').where('id', shop.id).first()
+          .then((results) => {
+            results.name.should.eql('Jelly Donut Update');
             done();
           });
         });

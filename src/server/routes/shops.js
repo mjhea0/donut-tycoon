@@ -40,4 +40,35 @@ router.post('/', (req, res, next) => {
   });
 });
 
+router.get('/:id/edit', (req, res, next) => {
+  return shopQueries.getShop(parseInt(req.params.id))
+  .then((shop) => {
+    const renderObject = {
+      title: 'Donut Tycoon - update shop',
+      messages: req.flash('messages'),
+      shop: shop
+    };
+    res.render('shops/edit.html', renderObject);
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
+router.post('/edit', (req, res, next) => {
+  const shopID = parseInt(req.body.id);
+  delete req.body.id;
+  return shopQueries.updateShop(shopID, req.body)
+  .then(() => {
+    req.flash('messages', {
+      status: 'success',
+      value: 'Shop updated.'
+    });
+    res.redirect('/shops');
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
 module.exports = router;
