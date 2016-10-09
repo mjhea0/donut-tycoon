@@ -18,10 +18,13 @@
     {% block css %}{% endblock %}
   </head>
   <body>
-    {% include "./partials/nav.html" %}
-    {% include "./partials/flash.html" %}
-    {% block content %}
-    {% endblock %}
+    {% include "nav.html" %}
+    <div class="container">
+      <br>
+      {% include "flash.html" %}
+      {% block content %}
+      {% endblock %}
+    </div>
     <br><br>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

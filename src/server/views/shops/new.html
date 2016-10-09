@@ -1,0 +1,28 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <br>
+    <h1>New shop</h1>
+    <hr><br>
+    <div class="row">
+      <div class="col-md-5">
+        <form method="post" action="/shops">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

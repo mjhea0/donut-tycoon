@@ -1,0 +1,34 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <h1>All shops</h1>
+  <hr><br>
+  <a href="/shops/new" class="btn btn-primary">Add new shop</a>
+  <br><br>
+  <div class="row">
+    <div class="col-md-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><h4>Shop Name</h4></th>
+            <th><h4>Update?</h4></th>
+            <th><h4>Delete?</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for shop in shops %}
+            <tr>
+              <td><a href="/shops/{{shop.id}}">{{shop.name}}</a></td>
+              <td><a href="/shops/{{shop.id}}/edit" class="btn btn-xs btn-warning">Update</a></td>
+              <td><a href="/shops/{{shop.id}}/delete" class="btn btn-xs btn-danger">Delete</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}
