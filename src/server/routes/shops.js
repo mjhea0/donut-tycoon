@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const shopQueries = require('../db/shops');
+const employeesQueries = require('../db/employees');
+const shopsDonutsQueries = require('../db/shops_donuts');
 
 router.get('/', (req, res, next) => {
   return shopQueries.getShops()
@@ -12,6 +14,27 @@ router.get('/', (req, res, next) => {
       shops: shops
     };
     res.render('shops/shops.html', renderObject);
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
+router.get('/:id/show', (req, res, next) => {
+  const renderObject = {
+    messages: req.flash('messages')
+  };
+  return Promise.all([
+    shopQueries.getShop(parseInt(req.params.id)),
+    employeesQueries.getEmployeesByShopID(parseInt(req.params.id)),
+    shopsDonutsQueries.getDonutsByShopID(parseInt(req.params.id))
+  ])
+  .then((response) => {
+    renderObject.title = `Donut Tycoon - ${response[0].name}`;
+    renderObject.shop = response[0];
+    renderObject.employees = response[1];
+    renderObject.donuts = response[2];
+    res.render('shops/shop.html', renderObject);
   })
   .catch((err) => {
     return next(err);

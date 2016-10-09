@@ -76,7 +76,7 @@ describe('routes : shops', () => {
           res.status.should.eql(200);
           res.type.should.eql('text/html');
           res.text.should.contain(
-            `<td><a href="/shops/${shop.id}">Jelly Donut</a></td>`);
+            `<td><a href="/shops/${shop.id}/show">Jelly Donut</a></td>`);
           done();
         });
       });
@@ -193,6 +193,35 @@ describe('routes : shops', () => {
             results.name.should.eql('Jelly Donut Update');
             done();
           });
+        });
+      });
+    });
+  });
+
+  describe('GET /shops/:id/show', () => {
+    it('should show shop details including donuts and employees', (done) => {
+      return knex('shops').where('name', 'Jelly Donut').first()
+      .then((shop) => {
+        chai.request(server)
+        .get(`/shops/${shop.id}/show`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(0);
+          res.status.should.eql(200);
+          res.text.should.contain(`<h1>${shop.name}</h1>`);
+          res.type.should.eql('text/html');
+          res.text.should.contain(
+            `<title>Donut Tycoon - ${shop.name}</title>`);
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain(`<p>City: ${shop.city}</p>`);
+          res.text.should.contain(`<p>City: ${shop.city}</p>`);
+          res.text.should.contain('Pot Hole');
+          res.text.should.contain('Chuckles');
+          res.text.should.contain('Bacon Maple Bar');
+          res.text.should.contain('Stephanie MacGyver');
+          res.text.should.contain('Roger Wisoky');
+          done();
         });
       });
     });

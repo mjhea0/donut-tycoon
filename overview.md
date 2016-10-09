@@ -71,23 +71,12 @@ Your app consists of three resources: shops, employees, and donuts.
 | Route Name     | Request Method | Example Request URL |  Route                   
 |----------------|----------------|---------------------|----------------------
 | shop index     | `GET`          | `/shops`            |  `/shops`
-| shop show page | `GET`          | `/shops/1`          |  `/shops/:shop_id`
+| shop show page | `GET`          | `/shops/1/show`     |  `/shops/:shop_id`
 | shop edit      | `GET`          | `/shops/1/edit`     |  `/shops/:shop_id/edit`
 | shop update    | `PUT/PATCH`    | `/shops/1/`         |  `/shops/:shop_id`
 | shop new page  | `GET`          | `/shops/new`        |  `/shops/new`
 | shop create    | `POST`         | `/shops`            |  `/shops`
 | shop destroy   | `DELETE`       | `/shops/1`          |  `/shops/:shop_id`
-
-
-| Route Name     | Request Method | Example Request URL |  Route                   
-|----------------|----------------|---------------------|----------------------
-| shop employee index page | `GET`  | `/shops/1/employees`            |  `/shops/:shop_id/employees`
-| shop employee show page | `GET`| `/shops/1/employees/1`  |  `/shops/:shop_id/employees/:employee_id`
-| shop employee edit page | `GET`| `/shops/1/employees/1/edit`  |  `/shops/:shop_id/employees/:employee_id/edit`
-| shop employee update | `PUT/PATCH`| `/shops/1/employees/1`  |  `/shops/:shop_id/employees/:employee_id`
-| shop employee new page | `GET`| `/shops/1/employees/new`  |  `/shops/:shop_id/employees/new`
-| shop employee create | `POST`| `/shops/1/employees`  |  `/shops/:shop_id/employees`
-| shop employee destroy | `DELETE`| `/shops/1/employees`  |  `/shops/:shop_id/employees`
 
 ### Shop Pages
 
@@ -109,10 +98,25 @@ Your app consists of three resources: shops, employees, and donuts.
 **Shop show page**
  - Shows all of the details of shop including the donuts they carry (comes from the donuts table), and employees (comes from employee table)
  - Has link to **shop employee index**
+ - Has link to **shop employee show page**
+ - Has link to **shop donut show page**
 
-**Shop employee index page**
- - Has listing of all of the employees for that shop
- - **The rest of the employee pages are pretty much the same as shop except with employees for that shop_id**
+## Employee Routes and Pages
+
+| Route Name     | Request Method | Example Request URL |  Route                   
+|----------------|----------------|---------------------|----------------------
+| employee index page | `GET`  | `/employees`            |  `/employees`
+| employee show page | `GET`| `/employees/1/show`  |  `/employees/:employee_id`
+| employee edit page | `GET`| `/employees/1/edit`  |  `/employees/:employee_id/edit`
+| employee update | `PUT/PATCH`| `/employees/1`  |  `/employees/:employee_id`
+| employee new page | `GET`| `/employees/new`  |  `/employees/new`
+| employee create | `POST`| `/employees`  |  `/employees`
+| employee destroy | `DELETE`| `/employees`  |  `/employees`
+
+ **Shop employee index page**
+  - Has listing of all of the employees for that shop
+  - **The rest of the employee pages are pretty much the same as shop except with employees for that shop_id**
+
 
 ## Donut Routes and Pages
 
@@ -121,7 +125,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | Route Name     | Request Method | Example Request URL |  Route                   
 |----------------|----------------|---------------------|----------------------
 | donut index     | `GET`          | `/donuts`            |  `/donuts`
-| donut show page | `GET`          | `/donuts/1`          |  `/donuts/:donut_id`
+| donut show page | `GET`          | `/donuts/1/show`     |  `/donuts/:donut_id`
 | donut edit      | `GET`          | `/donuts/1/edit`     |  `/donuts/:donut_id/edit`
 | donut update    | `PUT/PATCH`    | `/donuts/1/`         |  `/donuts/:donut_id`
 | donut new page  | `GET`          | `/donuts/new`        |  `/donuts/new`
