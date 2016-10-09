@@ -36,35 +36,33 @@ Your app consists of three resources: shops, employees, and donuts.
 
 ### Tables
 
-|Shop
+|shop
 |----------------
 |id
 |name (text)
 |city (text)
 
-
-|Donut
+|donut
 |----------------
 |id
 |name (text)
 |topping (text)
 |price (int)
 
-
-|Shop_donut
+|shop_donut
 |----------------
 |id
 |shop_id (fk)
 |donut_id (fk)
 
-
-|Employee
-|----------------|
+|employee
+|----------------
 |id
 |first_name (text)
 |last_name (text)
 |email (text)
 |favorite_donut (fk)
+|shop_id (fk)
 
 ## Shop Routes and Pages
 
