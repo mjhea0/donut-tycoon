@@ -78,7 +78,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | shop update    | `PUT/PATCH`    | `/shops/1/`         |  `/shops/:shop_id`
 | shop new page  | `GET`          | `/shops/new`        |  `/shops/new`
 | shop create    | `POST`         | `/shops`            |  `/shops`
-| shop destroy   | `DELETE`       | `/shops`            |  `/shops`
+| shop destroy   | `DELETE`       | `/shops/1`          |  `/shops/:shop_id`
 
 
 | Route Name     | Request Method | Example Request URL |  Route                   

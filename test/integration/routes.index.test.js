@@ -6,27 +6,30 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const server = require('../../src/server/app');
+const knex = require('../../src/server/db/connection');
 
 describe('routes : index', () => {
 
   beforeEach((done) => {
-    done();
+    return knex.migrate.rollback()
+    .then(() => { return knex.migrate.latest(); })
+    .then(() => { return knex.seed.run(); })
+    .then(() => { done(); });
   });
 
   afterEach((done) => {
-    done();
+    return knex.migrate.rollback()
+    .then(() => { done(); });
   });
 
   describe('GET /', () => {
-    it('should render the index', (done) => {
+    it('should redirect to /shops', (done) => {
       chai.request(server)
       .get('/')
       .end((err, res) => {
-        res.redirects.length.should.equal(0);
-        res.status.should.equal(200);
-        res.type.should.equal('text/html');
-        res.text.should.contain('<h1>Welcome to Express!</h1>');
-        res.text.should.contain('<h2>The sum is 3</h2>');
+        res.redirects.length.should.eql(1);
+        res.status.should.eql(200);
+        res.redirects[0].should.contain('/shops');
         done();
       });
     });
@@ -37,9 +40,9 @@ describe('routes : index', () => {
       chai.request(server)
       .get('/404')
       .end((err, res) => {
-        res.redirects.length.should.equal(0);
-        res.status.should.equal(404);
-        res.type.should.equal('application/json');
+        res.redirects.length.should.eql(0);
+        res.status.should.eql(404);
+        res.type.should.eql('application/json');
         res.body.message.should.eql('Not Found');
         done();
       });
