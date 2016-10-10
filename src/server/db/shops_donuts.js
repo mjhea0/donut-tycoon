@@ -1,5 +1,9 @@
 const knex = require('./connection');
 
+function addRow(obj) {
+  return knex('shops_donuts').insert(obj);
+}
+
 function getDonutsByShopID(id) {
   return Promise.all([
     knex('shops_donuts').where('shop_id', parseInt(id)),
@@ -19,6 +23,7 @@ function removeShopsDonutsByShopID(id) {
 }
 
 module.exports = {
+  addRow,
   getDonutsByShopID,
   removeShopsDonutsByShopID
 };

@@ -89,4 +89,69 @@ describe('routes : donuts', () => {
     });
   });
 
+  describe('GET /donuts/new', () => {
+    it('should have a form for adding a new donut', (done) => {
+      chai.request(server)
+      .get('/donuts/new')
+      .end((err, res) => {
+        should.not.exist(err);
+        res.redirects.length.should.eql(0);
+        res.status.should.eql(200);
+        res.text.should.contain('<h1>New donut</h1>');
+        res.type.should.eql('text/html');
+        res.text.should.contain('<title>Donut Tycoon - new donut</title>');
+        res.text.should.contain('<form method="post" action="/donuts">');
+        res.text.should.contain('<label for="name">Name</label>');
+        res.text.should.contain('<label for="shop">Shop</label>');
+        res.text.should.contain('Fluffy Fresh Donuts');
+        res.text.should.contain('Jelly Donut');
+        res.text.should.contain('Happy Donuts');
+        done();
+      });
+    });
+  });
+
+  describe('POST /donuts', () => {
+    it('should add a new donut and redirect to /donuts', (done) => {
+      return Promise.all([
+        knex('shops').where('name', 'Jelly Donut').first(),
+        knex('donuts').select('*'),
+        knex('shops_donuts').select('*')
+      ])
+      .then((res) => {
+        const beforeDonuts = res[1].length;
+        const beforeShopsDonuts = res[2].length;
+        chai.request(server)
+        .post('/donuts')
+        .send({
+          name: 'Test Donut',
+          topping: 'Nothing much',
+          price: 10,
+          shop: res[0].id
+        })
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(1);
+          res.status.should.eql(200);
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - donuts</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain('<h1>All donuts</h1>');
+          res.text.should.contain('Test Donut');
+          return knex('donuts').select('*')
+          .then((results) => {
+            results.length.should.eql(beforeDonuts + 1);
+            return knex('shops_donuts').select('*');
+          })
+          .then((afterShopsDonuts) => {
+            console.log(afterShopsDonuts);
+            afterShopsDonuts.length.should.eql(beforeShopsDonuts + 1);
+            done();
+          });
+        });
+      });
+    });
+  });
+
 });
