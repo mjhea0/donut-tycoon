@@ -70,7 +70,7 @@ Your app consists of three resources: shops, employees, and donuts.
 
 | Route Name     | Method | Example URL       | Route               | Complete |
 |----------------|--------|-------------------|---------------------| ---------|
-| shop index     | `GET`  | `/shops`          | `/shops`            | [ ]      |
+| shop index     | `GET`  | `/shops`          | `/shops`            | [  ]     |
 | shop show page | `GET`  | `/shops/1/show`   | `/shops/:id`        | [ ]      |
 | shop edit      | `GET`  | `/shops/1/edit`   | `/shops/:id/edit`   | [ ]      |
 | shop update    | `POST` | `/shops/edit`     | `/shops/edit`       | [ ]      |
