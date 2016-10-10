@@ -1,0 +1,34 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <h1>All donuts</h1>
+  <hr><br>
+  <a href="/donuts/new" class="btn btn-primary">Add new donut</a>
+  <br><br>
+  <div class="row">
+    <div class="col-md-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><h4>Name</h4></th>
+            <th><h4>Update?</h4></th>
+            <th><h4>Delete?</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for donut in donuts %}
+            <tr>
+              <td><a href="/donuts/{{donut.id}}/show">{{donut.name}}</a></td>
+              <td><a href="/donuts/{{donut.id}}/edit" class="btn btn-xs btn-warning">Update</a></td>
+              <td><form method="post" action="/donuts/{{donut.id}}/delete"><button class="btn btn-xs btn-danger">Delete</button></form></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}
