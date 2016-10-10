@@ -92,7 +92,7 @@ describe('routes : shops', () => {
           res.status.should.eql(200);
           res.type.should.eql('text/html');
           res.text.should.contain(`<a href="/shops/${shop.id}/edit" class="btn btn-xs btn-warning">Update</a>`);
-          res.text.should.contain(`<td><form method="post" action="/shops/1/delete"><button class="btn btn-xs btn-danger">Delete</button></form></td>`);
+          res.text.should.contain(`<td><form method="post" action="/shops/${shop.id}/delete"><button class="btn btn-xs btn-danger">Delete</button></form></td>`);
           done();
         });
       });

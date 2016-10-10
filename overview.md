@@ -99,9 +99,8 @@ Your app consists of three resources: shops, employees, and donuts.
 
 **Shop show page**
  - Shows all of the details of shop including the donuts they carry (comes from the donuts table), and employees (comes from employee table)
- - Has link to **shop employee index**
- - Has link to **shop employee show page**
- - Has link to **shop donut show page**
+ - Has link to **employee show page**
+ - Has link to **donut show page**
 
 ## Employee Routes and Pages
 
@@ -117,9 +116,24 @@ Your app consists of three resources: shops, employees, and donuts.
 
 > Add the destroy last, after you finish the other resources.
 
- **Shop employee index page**
-  - Has listing of all of the employees for that shop
-  - **The rest of the employee pages are pretty much the same as shop except with employees for that shop_id**
+ **Employee index page**
+  - Lists all of the employees
+  - Has a button to the new employee page
+  - Each employee listing should be a clickable link to the **employee show page**
+  - Has buttons to the **employee edit page** and the **employee delete route** for each employee
+
+  **Employee new page**
+   - Has a form with form fields that match the columns in your employees table
+   - Submit button goes to the **employee create** route which creates the new employee, and goes back to the index page
+
+  **Employee edit page**
+   - Has a form that is populated with a single employee's information, based on the employee id in the route
+   - Submit button that goes to the **employee update** route which updates the employee and goes back to the show page for that employee.
+
+  **Employee show page**
+   - Shows all of the details of employee
+   - Has link to **shop show page**
+   - Has link to **donut show page**
 
 ## Donut Routes and Pages
 

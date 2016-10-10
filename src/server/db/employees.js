@@ -1,5 +1,9 @@
 const knex = require('./connection');
 
+function getEmployees() {
+  return knex('employees').select('*');
+}
+
 function getEmployeesByShopID(id) {
   return knex('employees').where('shop_id', parseInt(id));
 }
@@ -9,6 +13,7 @@ function removeEmployeesByShopID(id) {
 }
 
 module.exports = {
+  getEmployees,
   getEmployeesByShopID,
   removeEmployeesByShopID
 };
