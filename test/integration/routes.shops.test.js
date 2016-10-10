@@ -147,7 +147,7 @@ describe('routes : shops', () => {
   });
 
   describe('GET /shops/:id/edit', () => {
-    it('should have a form for adding a new shop', (done) => {
+    it('should have a form for updating a shop', (done) => {
       return knex('shops').where('name', 'Jelly Donut').first()
       .then((shop) => {
         chai.request(server)

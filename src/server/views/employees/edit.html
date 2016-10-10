@@ -1,0 +1,57 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <br>
+    <h1>Update employee</h1>
+    <hr><br>
+    <div class="row">
+      <div class="col-md-5">
+        <form method="post" action="/employees/edit">
+          <div class="form-group">
+            <input type="hidden" name="id" value="{{employee.id}}" required>
+            <label for="first_name">First name</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" value="{{employee.first_name}}" required>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last name</label>
+            <input type="text" class="form-control" name="last_name" id="last_name" value="{{employee.last_name}}" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" id="email" value="{{employee.email}}" required>
+          </div>
+          <div class="form-group">
+            <label for="favorite_donut">Favorite Donut</label>
+            <select class="form-control" id="favorite_donut" name="favorite_donut" required>
+              {% for donut in donuts %}
+                {% if donut.id === employee.favorite_donut %}
+                  <option value="{{donut.id}}" selected>{{donut.name}}</option>
+                {% else %}
+                  <option value="{{donut.id}}">{{donut.name}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="shop_id">Shop</label>
+            <select class="form-control" id="shop_id" name="shop_id" required>
+              {% for shop in shops %}
+                {% if shop.id === employee.shop_id %}
+                  <option value="{{shop.id}}" selected>{{shop.name}}</option>
+                {% else %}
+                  <option value="{{shop.id}}">{{shop.name}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

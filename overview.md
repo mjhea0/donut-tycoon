@@ -95,7 +95,7 @@ Your app consists of three resources: shops, employees, and donuts.
 
 **Shop edit page**
  - Has a form that is populated with a single shop's information, based on the shop id in the route
- - Submit button that goes to the **shop update** route which updates the shop and goes back to the show page for that shop.
+ - Submit button that goes to the **shop update** route which updates the shop and goes back to the show page for that shop
 
 **Shop show page**
  - Shows all of the details of shop including the donuts they carry (comes from the donuts table), and employees (comes from employee table)
@@ -128,7 +128,7 @@ Your app consists of three resources: shops, employees, and donuts.
 
   **Employee edit page**
    - Has a form that is populated with a single employee's information, based on the employee id in the route
-   - Submit button that goes to the **employee update** route which updates the employee and goes back to the show page for that employee.
+   - Submit button that goes to the **employee update** route which updates the employee and goes back to the show page for that employee
 
   **Employee show page**
    - Shows all of the details of employee
@@ -147,7 +147,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | donut update    | `PUT/PATCH`    | `/donuts/1/`         |  `/donuts/:donut_id`
 | donut new page  | `GET`          | `/donuts/new`        |  `/donuts/new`
 | donut destroy   | `DELETE`       | `/donuts`            |  `/donuts`
-| donut create    | `POST`         | `/donuts`            |  `/donuts`
+| donut create    | `POST`         | `/donuts/delete`     |  `/donuts/:donut_id/delete`
 
 ### Donut Pages
 

@@ -53,4 +53,43 @@ router.post('/', (req, res, next) => {
   });
 });
 
+router.get('/:id/edit', (req, res, next) => {
+  const renderObject = {
+    title: 'Donut Tycoon - update employee',
+    messages: req.flash('messages')
+  };
+  return donutQueries.getDonuts()
+  .then((donuts) => {
+    renderObject.donuts = donuts;
+    return shopQueries.getShops();
+  })
+  .then((shops) => {
+    renderObject.shops = shops;
+    return employeeQueries.getEmployee(parseInt(req.params.id));
+  })
+  .then((employee) => {
+    renderObject.employee = employee;
+    res.render('employees/edit.html', renderObject);
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
+router.post('/edit', (req, res, next) => {
+  const shopID = parseInt(req.body.id);
+  delete req.body.id;
+  return employeeQueries.updateEmployee(shopID, req.body)
+  .then(() => {
+    req.flash('messages', {
+      status: 'success',
+      value: 'Employee updated.'
+    });
+    res.redirect('/employees');
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
 module.exports = router;
