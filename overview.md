@@ -71,7 +71,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | Route Name     | Method | Example URL       | Route               |
 |----------------|--------|-------------------|---------------------|
 | shop index     | `GET`  | `/shops`          | `/shops`            |
-| shop show page | `GET`  | `/shops/1/show`   | `/shops/:id`        |
+| shop show page | `GET`  | `/shops/1/show`   | `/shops/:id/show`   |
 | shop edit      | `GET`  | `/shops/1/edit`   | `/shops/:id/edit`   |
 | shop update    | `POST` | `/shops/edit`     | `/shops/edit`       |
 | shop new page  | `GET`  | `/shops/new`      | `/shops/new`        |
@@ -107,7 +107,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | Route Name         | Method | Example URL           | Route                  |
 |--------------------|--------|-----------------------|------------------------|
 | employee index     | `GET`  | `/employees`          | `/employees`           |
-| employee show page | `GET`  | `/employees/1/show`   | `/employees/:id`       |
+| employee show page | `GET`  | `/employees/1/show`   | `/employees/:id/show`  |
 | employee edit      | `GET`  | `/employees/1/edit`   | `/employees/:id/edit`  |
 | employee update    | `POST` | `/employees/edit`     | `/employees/edit`      |
 | employee new page  | `GET`  | `/employees/new`      | `/employees/new`       |
@@ -142,7 +142,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | Route Name      | Method | Example URL        | Route                |
 |-----------------|--------|--------------------|----------------------|
 | donut index     | `GET`  | `/donuts`          | `/donuts`            |
-| donut show page | `GET`  | `/donuts/1/show`   | `/donuts/:id`        |
+| donut show page | `GET`  | `/donuts/1/show`   | `/donuts/:id/show`   |
 | donut edit      | `GET`  | `/donuts/1/edit`   | `/donuts/:id/edit`   |
 | donut update    | `POST` | `/donuts/edit`     | `/donuts/edit`       |
 | donut new page  | `GET`  | `/donuts/new`      | `/donuts/new`        |
