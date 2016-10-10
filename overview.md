@@ -68,17 +68,17 @@ Your app consists of three resources: shops, employees, and donuts.
 
 ### Shop Routes
 
-| Route Name     | Request Method | Example Request URL | Route             
-|----------------|----------------|---------------------|----------------------
-| shop index     | `GET`          | `/shops`            | `/shops`
-| shop show page | `GET`          | `/shops/1/show`     | `/shops/:shop_id`
-| shop edit      | `GET`          | `/shops/1/edit`     | `/shops/:shop_id/edit`
-| shop update    | `POST`         | `/shops/edit`       | `/shops/edit`
-| shop new page  | `GET`          | `/shops/new`        | `/shops/new`
-| shop create    | `POST`         | `/shops`            | `/shops`
-| shop destroy   | `POST`         | `/shops/1/delete`   | `/shops/:shop_id/delete`
+| Route Name     | Method | Example URL       | Route               | Complete |
+|----------------|--------|-------------------|---------------------| ---------|
+| shop index     | `GET`  | `/shops`          | `/shops`            | [ ]      |
+| shop show page | `GET`  | `/shops/1/show`   | `/shops/:id`        | [ ]      |
+| shop edit      | `GET`  | `/shops/1/edit`   | `/shops/:id/edit`   | [ ]      |
+| shop update    | `POST` | `/shops/edit`     | `/shops/edit`       | [ ]      |
+| shop new page  | `GET`  | `/shops/new`      | `/shops/new`        | [ ]      |
+| shop create    | `POST` | `/shops`          | `/shops`            | [ ]      |
+| shop destroy   | `POST` | `/shops/1/delete` | `/shops/:id/delete` | [ ]      |
 
-> Add the destroy last, after you finish the other resources.
+> You can change the methods for update and destroy to `PUT` and `DELETE` with jQuery if you'd like.
 
 ### Shop Pages
 
@@ -114,7 +114,7 @@ Your app consists of three resources: shops, employees, and donuts.
 | employee create | `POST`| `/employees`  |  `/employees`
 | employee destroy | `POST`| `/employees/1/delete`  |  `/employees/:employee_id/delete`
 
-> Add the destroy last, after you finish the other resources.
+> You can change the methods for update and destroy to `PUT` and `DELETE` with jQuery if you'd like.
 
  **Employee index page**
   - Lists all of the employees
@@ -146,10 +146,10 @@ Your app consists of three resources: shops, employees, and donuts.
 | donut edit      | `GET`          | `/donuts/1/edit`     |  `/donuts/:donut_id/edit`
 | donut update    | `POST`    | `/donuts/edit`         |  `/donuts/edit`
 | donut new page  | `GET`          | `/donuts/new`        |  `/donuts/new`
-| donut destroy   | `POST`       | `/donuts`            |  `/donuts/:donut_id/delete`
 | donut create    | `POST`         | `/donuts/delete`     |  `/donuts`
+| donut destroy   | `POST`       | `/donuts`            |  `/donuts/:donut_id/delete`
 
-> Add the destroy last, after you finish the other resources.
+> You can change the methods for update and destroy to `PUT` and `DELETE` with jQuery if you'd like.
 
 ### Donut Pages
 
