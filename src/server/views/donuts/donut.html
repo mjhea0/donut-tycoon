@@ -1,0 +1,29 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <br>
+    <h1>{{donut.name}}</h1>
+    <hr><br>
+    <div class="row">
+      <div class="col-md-5">
+        <p>Topping: {{donut.topping}}</p>
+        <p>Price: ${{donut.price}}</p>
+        {% if shops.length %}
+          <p>Shops:</p>
+          <ul>
+            {% for shop in shops %}
+              <li><a href="/shops/{{shop.id}}/show">{{shop.name}}</a></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>Sorry, this donut is not at any shops.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

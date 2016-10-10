@@ -20,6 +20,25 @@ router.get('/', (req, res, next) => {
   });
 });
 
+router.get('/:id/show', (req, res, next) => {
+  const renderObject = {
+    messages: req.flash('messages')
+  };
+  return donutQueries.getDonut(parseInt(req.params.id))
+  .then((donut) => {
+    renderObject.title = `Donut Tycoon - ${donut.name}`;
+    renderObject.donut = donut;
+    return shopsDonutsQueries.getShopsByDonutID(parseInt(req.params.id));
+  })
+  .then((shops) => {
+    renderObject.shops = shops;
+    res.render('donuts/donut.html', renderObject);
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
 router.get('/new', (req, res, next) => {
   const renderObject = {
     title: 'Donut Tycoon - new donut',
@@ -56,6 +75,25 @@ router.post('/', (req, res, next) => {
       value: 'Donut added.'
     });
     res.redirect('/donuts');
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
+router.get('/:id/edit', (req, res, next) => {
+  const renderObject = {
+    title: 'Donut Tycoon - update donut',
+    messages: req.flash('messages')
+  };
+  return donutQueries.getDonuts()
+  .then((donuts) => {
+    renderObject.donuts = donuts;
+    return shopQueries.getShops();
+  })
+  .then((shops) => {
+    renderObject.shops = shops;
+    res.render('donuts/edit.html', renderObject);
   })
   .catch((err) => {
     return next(err);

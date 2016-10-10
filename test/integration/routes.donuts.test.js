@@ -145,10 +145,34 @@ describe('routes : donuts', () => {
             return knex('shops_donuts').select('*');
           })
           .then((afterShopsDonuts) => {
-            console.log(afterShopsDonuts);
             afterShopsDonuts.length.should.eql(beforeShopsDonuts + 1);
             done();
           });
+        });
+      });
+    });
+  });
+
+  describe('GET /donuts/:id/show', () => {
+    it('should show donut details', (done) => {
+      return knex('donuts').where('name', 'Chuckles').first()
+      .then((donut) => {
+        chai.request(server)
+        .get(`/donuts/${donut.id}/show`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(0);
+          res.status.should.eql(200);
+          res.text.should.contain(
+            `<h1>${donut.name}</h1>`);
+          res.type.should.eql('text/html');
+          res.text.should.contain(
+            `<title>Donut Tycoon - ${donut.name}</title>`);
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain(`<p>Topping: ${donut.topping}</p>`);
+          res.text.should.contain(`<p>Price: $${donut.price}</p>`);
+          done();
         });
       });
     });

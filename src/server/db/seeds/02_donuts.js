@@ -7,7 +7,7 @@ exports.seed = (knex, Promise) => {
     }),
     knex('donuts').insert({
       name: 'Chuckles',
-      topping: 'Chocolate frosting, dipped in mocha powder, and topped with peanuts and caramel & chocolate drizzle',
+      topping: 'Chocolate frosting, dipped in mocha powder and topped with peanuts, caramel, and chocolate drizzle',
       price: 4
     }),
     knex('donuts').insert({
