@@ -68,15 +68,15 @@ Your app consists of three resources: shops, employees, and donuts.
 
 ### Shop Routes
 
-| Route Name     | Method | Example URL       | Route               | Complete |
-|----------------|--------|-------------------|---------------------| ---------|
-| shop index     | `GET`  | `/shops`          | `/shops`            | - [ ]    |
-| shop show page | `GET`  | `/shops/1/show`   | `/shops/:id`        | [ ]      |
-| shop edit      | `GET`  | `/shops/1/edit`   | `/shops/:id/edit`   | [ ]      |
-| shop update    | `POST` | `/shops/edit`     | `/shops/edit`       | [ ]      |
-| shop new page  | `GET`  | `/shops/new`      | `/shops/new`        | [ ]      |
-| shop create    | `POST` | `/shops`          | `/shops`            | [ ]      |
-| shop destroy   | `POST` | `/shops/1/delete` | `/shops/:id/delete` | [ ]      |
+| Route Name     | Method | Example URL       | Route               |
+|----------------|--------|-------------------|---------------------|
+| shop index     | `GET`  | `/shops`          | `/shops`            |
+| shop show page | `GET`  | `/shops/1/show`   | `/shops/:id`        |
+| shop edit      | `GET`  | `/shops/1/edit`   | `/shops/:id/edit`   |
+| shop update    | `POST` | `/shops/edit`     | `/shops/edit`       |
+| shop new page  | `GET`  | `/shops/new`      | `/shops/new`        |
+| shop create    | `POST` | `/shops`          | `/shops`            |
+| shop destroy   | `POST` | `/shops/1/delete` | `/shops/:id/delete` |
 
 > You can change the methods for update and destroy to `PUT` and `DELETE` with jQuery if you'd like.
 
@@ -104,15 +104,15 @@ Your app consists of three resources: shops, employees, and donuts.
 
 ## Employee Routes and Pages
 
-| Route Name     | Request Method | Example Request URL |  Route                   
-|----------------|----------------|---------------------|----------------------
-| employee index page | `GET`  | `/employees`            |  `/employees`
-| employee show page | `GET`| `/employees/1/show`  |  `/employees/:employee_id/show`
-| employee edit page | `GET`| `/employees/1/edit`  |  `/employees/:employee_id/edit`
-| employee update | `POST`| `/employees/edit`  |  `/employees/edit`
-| employee new page | `GET`| `/employees/new`  |  `/employees/new`
-| employee create | `POST`| `/employees`  |  `/employees`
-| employee destroy | `POST`| `/employees/1/delete`  |  `/employees/:employee_id/delete`
+| Route Name         | Method | Example URL           | Route                  |
+|--------------------|--------|-----------------------|------------------------|
+| employee index     | `GET`  | `/employees`          | `/employees`           |
+| employee show page | `GET`  | `/employees/1/show`   | `/employees/:id`       |
+| employee edit      | `GET`  | `/employees/1/edit`   | `/employees/:id/edit`  |
+| employee update    | `POST` | `/employees/edit`     | `/employees/edit`      |
+| employee new page  | `GET`  | `/employees/new`      | `/employees/new`       |
+| employee create    | `POST` | `/employees`          | `/employees`           |
+| employee destroy   | `POST` | `/employees/1/delete` | `/employees/:id/delete`|
 
 > You can change the methods for update and destroy to `PUT` and `DELETE` with jQuery if you'd like.
 
@@ -139,15 +139,15 @@ Your app consists of three resources: shops, employees, and donuts.
 
 ### Donut Routes
 
-| Route Name     | Request Method | Example Request URL |  Route                   
-|----------------|----------------|---------------------|----------------------
-| donut index     | `GET`          | `/donuts`            |  `/donuts`
-| donut show page | `GET`          | `/donuts/1/show`     |  `/donuts/:donut_id`
-| donut edit      | `GET`          | `/donuts/1/edit`     |  `/donuts/:donut_id/edit`
-| donut update    | `POST`    | `/donuts/edit`         |  `/donuts/edit`
-| donut new page  | `GET`          | `/donuts/new`        |  `/donuts/new`
-| donut create    | `POST`         | `/donuts/delete`     |  `/donuts`
-| donut destroy   | `POST`       | `/donuts`            |  `/donuts/:donut_id/delete`
+| Route Name      | Method | Example URL        | Route                |
+|-----------------|--------|--------------------|----------------------|
+| donut index     | `GET`  | `/donuts`          | `/donuts`            |
+| donut show page | `GET`  | `/donuts/1/show`   | `/donuts/:id`        |
+| donut edit      | `GET`  | `/donuts/1/edit`   | `/donuts/:id/edit`   |
+| donut update    | `POST` | `/donuts/edit`     | `/donuts/edit`       |
+| donut new page  | `GET`  | `/donuts/new`      | `/donuts/new`        |
+| donut create    | `POST` | `/donuts`          | `/donuts`            |
+| donut destroy   | `POST` | `/donuts/1/delete` | `/donuts/:id/delete` |
 
 > You can change the methods for update and destroy to `PUT` and `DELETE` with jQuery if you'd like.
 
