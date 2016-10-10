@@ -20,6 +20,29 @@ router.get('/', (req, res, next) => {
   });
 });
 
+router.get('/:id/show', (req, res, next) => {
+  const renderObject = {
+    messages: req.flash('messages')
+  };
+  return employeeQueries.getEmployee(parseInt(req.params.id))
+  .then((employee) => {
+    renderObject.title = `Donut Tycoon - ${employee.last_name}`;
+    renderObject.employee = employee;
+    return Promise.all([
+      donutQueries.getDonut(parseInt(employee.favorite_donut)),
+      shopQueries.getShop(parseInt(employee.shop_id))
+    ]);
+  })
+  .then((response) => {
+    renderObject.donut = response[0];
+    renderObject.shop = response[1];
+    res.render('employees/employee.html', renderObject);
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
 router.get('/new', (req, res, next) => {
   const renderObject = {
     title: 'Donut Tycoon - new employee',

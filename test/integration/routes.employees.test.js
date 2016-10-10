@@ -216,4 +216,31 @@ describe('routes : employees', () => {
     });
   });
 
+  describe('GET /employees/:id/show', () => {
+    it('should show employee details', (done) => {
+      return knex('employees').where('last_name', 'MacGyver').first()
+      .then((employee) => {
+        chai.request(server)
+        .get(`/employees/${employee.id}/show`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(0);
+          res.status.should.eql(200);
+          res.text.should.contain(
+            `<h1>${employee.first_name} ${employee.last_name}</h1>`);
+          res.type.should.eql('text/html');
+          res.text.should.contain(
+            `<title>Donut Tycoon - ${employee.last_name}</title>`);
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain(`<p>Email: ${employee.email}</p>`);
+          res.text.should.contain(`<p>Favorite Donut: <a href="/donuts/${employee.favorite_donut}/show">`);
+          res.text.should.contain(
+            `<p>Shop: <a href="/shops/${employee.shop_id}/show">`);
+          done();
+        });
+      });
+    });
+  });
+
 });

@@ -146,24 +146,26 @@ Your app consists of three resources: shops, employees, and donuts.
 | donut edit      | `GET`          | `/donuts/1/edit`     |  `/donuts/:donut_id/edit`
 | donut update    | `PUT/PATCH`    | `/donuts/1/`         |  `/donuts/:donut_id`
 | donut new page  | `GET`          | `/donuts/new`        |  `/donuts/new`
-| donut destroy   | `DELETE`       | `/donuts`            |  `/donuts`
-| donut create    | `POST`         | `/donuts/delete`     |  `/donuts/:donut_id/delete`
+| donut destroy   | `DELETE`       | `/donuts`            |  `/donuts/:donut_id/delete`
+| donut create    | `POST`         | `/donuts/delete`     |  `/donuts`
+
+> Add the destroy last, after you finish the other resources.
 
 ### Donut Pages
 
 **Donut index page**
-- Lists all of the donuts.
-- Has a button to the new donut page.
+- Lists all of the donuts
+- Has a button to the new donut page
 - Each donut listing should be a clickable link to the **donut show page**.
-- Has buttons to the **donut edit page** and the **donut delete route** for each donut.
+- Has buttons to the **donut edit page** and the **donut delete route** for each donut
 
 **Donut new page**
 - Has a form with form fields that match the columns in your donuts table
-- Submit button goes to the **donut create** route which creates the new donut, and goes back to the index page
+- Submit button goes to the **donut create** route which creates the new donut, and goes back to the donut index page
 
 **Donut edit page**
 - Has a form that is populated with a single donut's information, based on the donut id in the route
-- Submit button that goes to the **donut update** route which updates the donut and goes back to the show page for that donut.
+- Submit button that goes to the **donut update** route which updates the donut and goes back to the show page for that donut
 
 **Donut show page**
 - Shows all of the details of donut including which shops carry it (comes from the shops table)

@@ -1,0 +1,20 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <br>
+    <h1>{{employee.first_name}} {{employee.last_name}}</h1>
+    <hr><br>
+    <div class="row">
+      <div class="col-md-5">
+        <p>Email: {{employee.email}}</p>
+        <p>Favorite Donut: <a href="/donuts/{{donut.id}}/show">{{donut.name}}</a></p>
+        <p>Shop: <a href="/shops/{{donut.id}}/show">{{shop.name}}</a></p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
