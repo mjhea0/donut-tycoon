@@ -243,4 +243,29 @@ describe('routes : employees', () => {
     });
   });
 
+  describe('POST /employees/:id/delete', () => {
+    it('should delete an employee and redirect to /employees', (done) => {
+      return knex('employees').where('last_name', 'MacGyver').first()
+      .then((employee) => {
+        chai.request(server)
+        .post(`/employees/${employee.id}/delete`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(1);
+          res.status.should.eql(200);
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - employees</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.not.contain('MacGyver');
+          return knex('employees').where('id', employee.id)
+          .then((results) => {
+            results.length.should.eql(0);
+            done();
+          });
+        });
+      });
+    });
+  });
+
 });

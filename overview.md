@@ -70,12 +70,12 @@ Your app consists of three resources: shops, employees, and donuts.
 
 | Route Name     | Request Method | Example Request URL | Route             
 |----------------|----------------|---------------------|----------------------
-| shop index     | `GET`          | `/shops`            |  `/shops`
-| shop show page | `GET`          | `/shops/1/show`     |  `/shops/:shop_id`
+| shop index     | `GET`          | `/shops`            | `/shops`
+| shop show page | `GET`          | `/shops/1/show`     | `/shops/:shop_id`
 | shop edit      | `GET`          | `/shops/1/edit`     | `/shops/:shop_id/edit`
-| shop update    | `PUT/PATCH`    | `/shops/1/`         |  `/shops/:shop_id`
-| shop new page  | `GET`          | `/shops/new`        |  `/shops/new`
-| shop create    | `POST`         | `/shops`            |  `/shops`
+| shop update    | `POST`         | `/shops/edit`       | `/shops/edit`
+| shop new page  | `GET`          | `/shops/new`        | `/shops/new`
+| shop create    | `POST`         | `/shops`            | `/shops`
 | shop destroy   | `POST`         | `/shops/1/delete`   | `/shops/:shop_id/delete`
 
 > Add the destroy last, after you finish the other resources.
@@ -109,10 +109,10 @@ Your app consists of three resources: shops, employees, and donuts.
 | employee index page | `GET`  | `/employees`            |  `/employees`
 | employee show page | `GET`| `/employees/1/show`  |  `/employees/:employee_id/show`
 | employee edit page | `GET`| `/employees/1/edit`  |  `/employees/:employee_id/edit`
-| employee update | `PUT/PATCH`| `/employees/1`  |  `/employees/:employee_id`
+| employee update | `POST`| `/employees/edit`  |  `/employees/edit`
 | employee new page | `GET`| `/employees/new`  |  `/employees/new`
 | employee create | `POST`| `/employees`  |  `/employees`
-| employee destroy | `DELETE`| `/employees/1/delete`  |  `/employees/:employee_id/delete`
+| employee destroy | `POST`| `/employees/1/delete`  |  `/employees/:employee_id/delete`
 
 > Add the destroy last, after you finish the other resources.
 
@@ -144,9 +144,9 @@ Your app consists of three resources: shops, employees, and donuts.
 | donut index     | `GET`          | `/donuts`            |  `/donuts`
 | donut show page | `GET`          | `/donuts/1/show`     |  `/donuts/:donut_id`
 | donut edit      | `GET`          | `/donuts/1/edit`     |  `/donuts/:donut_id/edit`
-| donut update    | `PUT/PATCH`    | `/donuts/1/`         |  `/donuts/:donut_id`
+| donut update    | `POST`    | `/donuts/edit`         |  `/donuts/edit`
 | donut new page  | `GET`          | `/donuts/new`        |  `/donuts/new`
-| donut destroy   | `DELETE`       | `/donuts`            |  `/donuts/:donut_id/delete`
+| donut destroy   | `POST`       | `/donuts`            |  `/donuts/:donut_id/delete`
 | donut create    | `POST`         | `/donuts/delete`     |  `/donuts`
 
 > Add the destroy last, after you finish the other resources.

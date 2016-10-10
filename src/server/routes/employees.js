@@ -115,4 +115,18 @@ router.post('/edit', (req, res, next) => {
   });
 });
 
+router.post('/:id/delete', (req, res, next) => {
+  return employeeQueries.removeEmployee(parseInt(req.params.id))
+  .then(() => {
+    req.flash('messages', {
+      status: 'success',
+      value: 'Employee removed.'
+    });
+    res.redirect('/employees');
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
 module.exports = router;
