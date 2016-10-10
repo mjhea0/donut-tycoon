@@ -8,6 +8,10 @@ function getEmployeesByShopID(id) {
   return knex('employees').where('shop_id', parseInt(id));
 }
 
+function addEmployee(obj) {
+  return knex('employees').insert(obj);
+}
+
 function removeEmployeesByShopID(id) {
   return knex('employees').where('shop_id', parseInt(id)).del();
 }
@@ -15,5 +19,6 @@ function removeEmployeesByShopID(id) {
 module.exports = {
   getEmployees,
   getEmployeesByShopID,
+  addEmployee,
   removeEmployeesByShopID
 };

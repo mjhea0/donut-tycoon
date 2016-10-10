@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const shopQueries = require('../db/shops');
-const employeesQueries = require('../db/employees');
+const employeeQueries = require('../db/employees');
 const shopsDonutsQueries = require('../db/shops_donuts');
 
 router.get('/', (req, res, next) => {
@@ -26,7 +26,7 @@ router.get('/:id/show', (req, res, next) => {
   };
   return Promise.all([
     shopQueries.getShop(parseInt(req.params.id)),
-    employeesQueries.getEmployeesByShopID(parseInt(req.params.id)),
+    employeeQueries.getEmployeesByShopID(parseInt(req.params.id)),
     shopsDonutsQueries.getDonutsByShopID(parseInt(req.params.id))
   ])
   .then((response) => {
@@ -96,7 +96,7 @@ router.post('/edit', (req, res, next) => {
 
 router.post('/:id/delete', (req, res, next) => {
   const shopID = parseInt(req.params.id);
-  employeesQueries.removeEmployeesByShopID(shopID)
+  employeeQueries.removeEmployeesByShopID(shopID)
   .then(() => { return shopsDonutsQueries.removeShopsDonutsByShopID(shopID); })
   .then(() => { return shopQueries.removeShop(shopID); })
   .then(() => {

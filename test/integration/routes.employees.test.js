@@ -89,4 +89,69 @@ describe('routes : employees', () => {
     });
   });
 
+  describe('GET /employees/new', () => {
+    it('should have a form for adding a new employee', (done) => {
+      chai.request(server)
+      .get('/employees/new')
+      .end((err, res) => {
+        should.not.exist(err);
+        res.redirects.length.should.eql(0);
+        res.status.should.eql(200);
+        res.text.should.contain('<h1>New employee</h1>');
+        res.type.should.eql('text/html');
+        res.text.should.contain('<title>Donut Tycoon - new employee</title>');
+        res.text.should.contain('<form method="post" action="/employees">');
+        res.text.should.contain('<label for="email">Email</label>');
+        res.text.should.contain(
+          '<label for="favorite_donut">Favorite Donut</label>');
+        res.text.should.contain('Pot Hole');
+        res.text.should.contain('Chuckles');
+        res.text.should.contain('Bacon Maple Bar');
+        res.text.should.contain('<label for="shop_id">Shop</label>');
+        res.text.should.contain('Fluffy Fresh Donuts');
+        res.text.should.contain('Jelly Donut');
+        res.text.should.contain('Happy Donuts');
+        done();
+      });
+    });
+  });
+
+  describe('POST /employees', () => {
+    it('should add a new employee and redirect to /employees', (done) => {
+      return Promise.all([
+        knex('employees').select('*'),
+        knex('donuts').select('id'),
+        knex('shops').select('id')
+      ])
+      .then((res) => {
+        const employees = res[0];
+        chai.request(server)
+        .post('/employees')
+        .send({
+          first_name: 'Micheal',
+          last_name: 'Herman',
+          email: 'michael@herman.com',
+          favorite_donut: res[1][0].id,
+          shop_id: res[2][0].id
+        })
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(1);
+          res.status.should.eql(200);
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - employees</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.contain('<h1>All employees</h1>');
+          res.text.should.contain('Herman');
+          return knex('employees').select('*')
+          .then((results) => {
+            results.length.should.eql(employees.length + 1);
+            done();
+          });
+        });
+      });
+    });
+  });
+
 });

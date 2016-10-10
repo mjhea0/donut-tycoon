@@ -1,0 +1,56 @@
+{% extends "../_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <br>
+    <h1>New employee</h1>
+    <hr><br>
+    <div class="row">
+      <div class="col-md-5">
+        {% if not shops.length %}
+          <p>You must add a shop before adding an employee</p>
+        {% elseif not donuts.length %}
+          <p>You must add a donut before adding an employee</p>
+        {% else %}
+          <form method="post" action="/employees">
+            <div class="form-group">
+              <label for="first_name">First name</label>
+              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last name</label>
+              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <label for="favorite_donut">Favorite Donut</label>
+              <select class="form-control" id="favorite_donut" name="favorite_donut" required>
+                <option disabled selected value> -- select an option -- </option>
+                {% for donut in donuts %}
+                  <option value="{{donut.id}}">{{donut.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="shop_id">Shop</label>
+              <select class="form-control" id="shop_id" name="shop_id" required>
+                <option disabled selected value> -- select an option -- </option>
+                {% for shop in shops %}
+                  <option value="{{shop.id}}">{{shop.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

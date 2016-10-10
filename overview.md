@@ -124,7 +124,7 @@ Your app consists of three resources: shops, employees, and donuts.
 
   **Employee new page**
    - Has a form with form fields that match the columns in your employees table
-   - Submit button goes to the **employee create** route which creates the new employee, and goes back to the index page
+   - Submit button goes to the **employee create** route which creates the new employee, and goes back to the employee index page
 
   **Employee edit page**
    - Has a form that is populated with a single employee's information, based on the employee id in the route
