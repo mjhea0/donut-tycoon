@@ -16,9 +16,14 @@ function updateShop(id, obj) {
   return knex('shops').update(obj).where('id', parseInt(id));
 }
 
+function removeShop(id) {
+  return knex('shops').where('id', parseInt(id)).first().del();
+}
+
 module.exports = {
   getShops,
   getShop,
   addShop,
-  updateShop
+  updateShop,
+  removeShop
 };

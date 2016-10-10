@@ -94,4 +94,21 @@ router.post('/edit', (req, res, next) => {
   });
 });
 
+router.post('/:id/delete', (req, res, next) => {
+  const shopID = parseInt(req.params.id);
+  employeesQueries.removeEmployeesByShopID(shopID)
+  .then(() => { return shopsDonutsQueries.removeShopsDonutsByShopID(shopID); })
+  .then(() => { return shopQueries.removeShop(shopID); })
+  .then(() => {
+    req.flash('messages', {
+      status: 'success',
+      value: 'Shop removed.'
+    });
+    res.redirect('/shops');
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
 module.exports = router;

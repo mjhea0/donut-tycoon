@@ -14,6 +14,11 @@ function getDonutsByShopID(id) {
   });
 }
 
+function removeShopsDonutsByShopID(id) {
+  return knex('shops_donuts').where('shop_id', parseInt(id)).del();
+}
+
 module.exports = {
-  getDonutsByShopID
+  getDonutsByShopID,
+  removeShopsDonutsByShopID
 };

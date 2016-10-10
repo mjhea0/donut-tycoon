@@ -68,15 +68,17 @@ Your app consists of three resources: shops, employees, and donuts.
 
 ### Shop Routes
 
-| Route Name     | Request Method | Example Request URL |  Route                   
+| Route Name     | Request Method | Example Request URL | Route             
 |----------------|----------------|---------------------|----------------------
 | shop index     | `GET`          | `/shops`            |  `/shops`
 | shop show page | `GET`          | `/shops/1/show`     |  `/shops/:shop_id`
-| shop edit      | `GET`          | `/shops/1/edit`     |  `/shops/:shop_id/edit`
+| shop edit      | `GET`          | `/shops/1/edit`     | `/shops/:shop_id/edit`
 | shop update    | `PUT/PATCH`    | `/shops/1/`         |  `/shops/:shop_id`
 | shop new page  | `GET`          | `/shops/new`        |  `/shops/new`
 | shop create    | `POST`         | `/shops`            |  `/shops`
-| shop destroy   | `DELETE`       | `/shops/1`          |  `/shops/:shop_id`
+| shop destroy   | `POST`         | `/shops/1/delete`   | `/shops/:shop_id/delete`
+
+> Add the destroy last, after you finish the other resources.
 
 ### Shop Pages
 
@@ -106,17 +108,18 @@ Your app consists of three resources: shops, employees, and donuts.
 | Route Name     | Request Method | Example Request URL |  Route                   
 |----------------|----------------|---------------------|----------------------
 | employee index page | `GET`  | `/employees`            |  `/employees`
-| employee show page | `GET`| `/employees/1/show`  |  `/employees/:employee_id`
+| employee show page | `GET`| `/employees/1/show`  |  `/employees/:employee_id/show`
 | employee edit page | `GET`| `/employees/1/edit`  |  `/employees/:employee_id/edit`
 | employee update | `PUT/PATCH`| `/employees/1`  |  `/employees/:employee_id`
 | employee new page | `GET`| `/employees/new`  |  `/employees/new`
 | employee create | `POST`| `/employees`  |  `/employees`
-| employee destroy | `DELETE`| `/employees`  |  `/employees`
+| employee destroy | `DELETE`| `/employees/1/delete`  |  `/employees/:employee_id/delete`
+
+> Add the destroy last, after you finish the other resources.
 
  **Shop employee index page**
   - Has listing of all of the employees for that shop
   - **The rest of the employee pages are pretty much the same as shop except with employees for that shop_id**
-
 
 ## Donut Routes and Pages
 

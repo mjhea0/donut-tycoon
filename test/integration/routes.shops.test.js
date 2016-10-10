@@ -92,7 +92,7 @@ describe('routes : shops', () => {
           res.status.should.eql(200);
           res.type.should.eql('text/html');
           res.text.should.contain(`<a href="/shops/${shop.id}/edit" class="btn btn-xs btn-warning">Update</a>`);
-          res.text.should.contain(`<a href="/shops/${shop.id}/delete" class="btn btn-xs btn-danger">Delete</a>`);
+          res.text.should.contain(`<td><form method="post" action="/shops/1/delete"><button class="btn btn-xs btn-danger">Delete</button></form></td>`);
           done();
         });
       });
@@ -222,6 +222,35 @@ describe('routes : shops', () => {
           res.text.should.contain('Stephanie MacGyver');
           res.text.should.contain('Roger Wisoky');
           done();
+        });
+      });
+    });
+  });
+
+  describe('POST /shops/:id/delete', () => {
+    it('should delete a shop and redirect to /shops', (done) => {
+      return knex('shops').where('name', 'Jelly Donut').first()
+      .then((shop) => {
+        chai.request(server)
+        .post(`/shops/${shop.id}/delete`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(1);
+          res.status.should.eql(200);
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - home</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.not.contain('Jelly Donut');
+          return knex('shops').where('id', shop.id)
+          .then((results) => {
+            results.length.should.eql(0);
+            return knex('employees').where('shop_id', shop.id);
+          })
+          .then((shops) => {
+            done();
+            shops.length.should.eql(0);
+          });
         });
       });
     });

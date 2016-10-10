@@ -23,7 +23,7 @@
             <tr>
               <td><a href="/shops/{{shop.id}}/show">{{shop.name}}</a></td>
               <td><a href="/shops/{{shop.id}}/edit" class="btn btn-xs btn-warning">Update</a></td>
-              <td><a href="/shops/{{shop.id}}/delete" class="btn btn-xs btn-danger">Delete</a></td>
+              <td><form method="post" action="/shops/{{shop.id}}/delete"><button class="btn btn-xs btn-danger">Delete</button></form></td>
             </tr>
           {% endfor %}
         </tbody>
