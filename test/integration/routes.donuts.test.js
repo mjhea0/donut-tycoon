@@ -178,4 +178,33 @@ describe('routes : donuts', () => {
     });
   });
 
+  describe('POST /donuts/:id/delete', () => {
+    it('should delete a donut and redirect to /donuts', (done) => {
+      return knex('donuts').where('name', 'Chuckles').first()
+      .then((donut) => {
+        chai.request(server)
+        .post(`/donuts/${donut.id}/delete`)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.redirects.length.should.eql(1);
+          res.status.should.eql(200);
+          res.type.should.eql('text/html');
+          res.text.should.contain('<title>Donut Tycoon - donuts</title>');
+          res.text.should.contain(
+            '<a class="navbar-brand" href="/shops">Donut Tycoon</a>');
+          res.text.should.not.contain('Chuckles');
+          return knex('donuts').where('id', donut.id)
+          .then((results) => {
+            results.length.should.eql(0);
+            return knex('shops_donuts').where('donut_id', donut.id)
+            .then((shops_donuts) => {
+              shops_donuts.length.should.eql(0);
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
+
 });

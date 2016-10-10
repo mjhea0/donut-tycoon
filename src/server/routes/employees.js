@@ -28,14 +28,20 @@ router.get('/:id/show', (req, res, next) => {
   .then((employee) => {
     renderObject.title = `Donut Tycoon - ${employee.last_name}`;
     renderObject.employee = employee;
-    return Promise.all([
-      donutQueries.getDonut(parseInt(employee.favorite_donut)),
-      shopQueries.getShop(parseInt(employee.shop_id))
-    ]);
+    const promises = [];
+    promises.push(shopQueries.getShop(parseInt(employee.shop_id)));
+    if (!employee.favorite_donut) {
+      renderObject.donut = null;
+    } else {
+      promises.push(donutQueries.getDonut(parseInt(employee.favorite_donut)));
+    }
+    return Promise.all(promises);
   })
   .then((response) => {
-    renderObject.donut = response[0];
-    renderObject.shop = response[1];
+    renderObject.shop = response[0];
+    if (response[1]) {
+      renderObject.donut = response[1];
+    }
     res.render('employees/employee.html', renderObject);
   })
   .catch((err) => {

@@ -36,9 +36,14 @@ function removeShopsDonutsByShopID(id) {
   return knex('shops_donuts').where('shop_id', parseInt(id)).del();
 }
 
+function removeShopsDonutsByDonutID(id) {
+  return knex('shops_donuts').where('donut_id', parseInt(id)).del();
+}
+
 module.exports = {
   addRow,
   getDonutsByShopID,
   getShopsByDonutID,
-  removeShopsDonutsByShopID
+  removeShopsDonutsByShopID,
+  removeShopsDonutsByDonutID
 };

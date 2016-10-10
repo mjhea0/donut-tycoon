@@ -12,8 +12,13 @@ function addDonut(obj) {
   return knex('donuts').insert(obj).returning('id');
 }
 
+function removeDonut(id) {
+  return knex('donuts').where('id', parseInt(id)).first().del();
+}
+
 module.exports = {
   getDonuts,
   getDonut,
-  addDonut
+  addDonut,
+  removeDonut
 };

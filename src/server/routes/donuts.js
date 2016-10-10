@@ -4,6 +4,7 @@ const router = express.Router();
 const donutQueries = require('../db/donuts');
 const shopQueries = require('../db/shops');
 const shopsDonutsQueries = require('../db/shops_donuts');
+const employeeQueries = require('../db/employees');
 
 router.get('/', (req, res, next) => {
   return donutQueries.getDonuts()
@@ -94,6 +95,28 @@ router.get('/:id/edit', (req, res, next) => {
   .then((shops) => {
     renderObject.shops = shops;
     res.render('donuts/edit.html', renderObject);
+  })
+  .catch((err) => {
+    return next(err);
+  });
+});
+
+router.post('/:id/delete', (req, res, next) => {
+  const donutID = parseInt(req.params.id);
+  return shopsDonutsQueries.removeShopsDonutsByDonutID(donutID)
+  .then(() => {
+    const obj = {
+      favorite_donut: null
+    };
+    return employeeQueries.updateEmployeesByDonutID(donutID, obj);
+  })
+  .then(() => { return donutQueries.removeDonut(donutID); })
+  .then(() => {
+    req.flash('messages', {
+      status: 'success',
+      value: 'Donut removed.'
+    });
+    res.redirect('/donuts');
   })
   .catch((err) => {
     return next(err);

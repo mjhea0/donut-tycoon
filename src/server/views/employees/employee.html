@@ -11,7 +11,11 @@
     <div class="row">
       <div class="col-md-5">
         <p>Email: {{employee.email}}</p>
-        <p>Favorite Donut: <a href="/donuts/{{donut.id}}/show">{{donut.name}}</a></p>
+        {% if donut %}
+          <p>Favorite Donut: <a href="/donuts/{{donut.id}}/show">{{donut.name}}</a></p>
+        {% else %}
+          <p>Favorite Donut: N/A</p>
+        {% endif %}
         <p>Shop: <a href="/shops/{{donut.id}}/show">{{shop.name}}</a></p>
       </div>
     </div>
